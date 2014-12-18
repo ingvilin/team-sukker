@@ -32,6 +32,10 @@ app.use(function(req, res, next) {
     next(err);
 });
 
+app.post('/brukket', function(req, res) {
+    console.log(req.body);
+})
+
 // error handlers
 
 // development error handler
