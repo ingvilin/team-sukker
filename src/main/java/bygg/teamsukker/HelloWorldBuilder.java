@@ -138,7 +138,7 @@ public class HelloWorldBuilder extends Builder {
             // ^Can also use req.bindJSON(this, formData);
             //  (easier when there are many fields; need set* methods for this, like setUseFrench)
             save();
-            return super.configure(req,formData);
+            return super.configure(req,formData)
         }
 
         /**
