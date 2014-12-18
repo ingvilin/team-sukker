@@ -1,10 +1,8 @@
 package bygg.teamsukker;
 import hudson.Launcher;
 import hudson.Extension;
+import hudson.model.*;
 import hudson.util.FormValidation;
-import hudson.model.AbstractBuild;
-import hudson.model.BuildListener;
-import hudson.model.AbstractProject;
 import hudson.tasks.Builder;
 import hudson.tasks.BuildStepDescriptor;
 import net.sf.json.JSONObject;
@@ -14,6 +12,8 @@ import org.kohsuke.stapler.QueryParameter;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Sample {@link Builder}.
@@ -55,6 +55,14 @@ public class HelloWorldBuilder extends Builder {
         // Since this is a dummy, we just say 'hello world' and call that a build.
 
         // This also shows how you can consult the global configuration of the builder
+
+
+        if (build.getResult().isWorseThan(Result.SUCCESS)) {
+            for (Object user : build.getCulprits()) {
+                listener.getLogger().println(((User) user).getFullName());
+            }
+        }
+
         if (getDescriptor().getUseFrench())
             listener.getLogger().println("Bonjour, "+name+"!");
         else
