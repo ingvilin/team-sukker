@@ -1,3 +1,5 @@
 *.iml
 *.iwr
 .idea
+target/*
+work/*
